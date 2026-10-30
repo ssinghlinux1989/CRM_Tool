@@ -1,0 +1,6 @@
+{
+  "name": "SunFlow Solar Solutions CRM",
+  "description": "Enterprise Solar CRM with real-time lead analytics, PV proposals, site survey audits, AMC tracking, and live Google Search grounded solar policy radar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

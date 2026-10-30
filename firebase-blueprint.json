@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "user": {
+      "title": "User Profile",
+      "description": "User profile with role-based access for Bharat Solar Shakti Pvt system",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["Admin", "Sales", "Operations", "Finance"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "solarLead": {
+      "title": "Solar Project & Lead",
+      "description": "End-to-end solar rooftop project record tracking 16 EPC workflow stages, equipment specs, and financials",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fullName": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "pinCode": { "type": "string" },
+        "consumerNumber": { "type": "string" },
+        "discom": { "type": "string" },
+        "currentStage": { 
+          "type": "string", 
+          "enum": [
+            "leads",
+            "meeting",
+            "sales_quotation",
+            "approval",
+            "conversion",
+            "pm_portal_reg",
+            "loan",
+            "material_procurement",
+            "inventory",
+            "installation",
+            "pm_suryaghar_doc",
+            "net_metering",
+            "commissioning",
+            "balance_payment",
+            "share_invoices",
+            "support"
+          ] 
+        },
+        "systemCapacityKw": { "type": "number" },
+        "totalSystemCost": { "type": "number" },
+        "pmSubsidyAmount": { "type": "number" },
+        "customerPayable": { "type": "number" },
+        "advancePaymentReceived": { "type": "number" },
+        "stagePaymentReceived": { "type": "number" },
+        "balanceDue": { "type": "number" },
+        "procurementCost": { "type": "number" },
+        "installationCost": { "type": "number" },
+        "discomFees": { "type": "number" },
+        "assignedRep": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "fullName", "phone", "currentStage", "systemCapacityKw"]
+    },
+    "financialTransaction": {
+      "title": "Financial Transaction",
+      "description": "Financial ledger record for solar project revenue, material procurement, contractor payments, and PM subsidies",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "leadId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "type": { "type": "string", "enum": ["income_advance", "income_stage", "income_balance", "income_subsidy", "expense_material", "expense_installation", "expense_netmetering", "expense_operational"] },
+        "amount": { "type": "number" },
+        "paymentMode": { "type": "string" },
+        "referenceNo": { "type": "string" },
+        "date": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "leadId", "type", "amount", "date"]
+    },
+    "companyBranding": {
+      "title": "Company Settings",
+      "description": "Company operational profile and branding configuration",
+      "type": "object",
+      "properties": {
+        "companyName": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "currency": { "type": "string" },
+        "phone": { "type": "string" },
+        "gstin": { "type": "string" },
+        "pmVendorId": { "type": "string" }
+      },
+      "required": ["companyName", "email", "address", "currency"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "firebaseblueprint.entities.user",
+      "description": "User profiles and RBAC permissions"
+    },
+    "/leads/{leadId}": {
+      "schema": "firebaseblueprint.entities.solarLead",
+      "description": "Solar rooftop leads and projects with 16 workflow stages and financial status"
+    },
+    "/finances/{financeId}": {
+      "schema": "firebaseblueprint.entities.financialTransaction",
+      "description": "Financial ledger entries for cashflow, procurement, customer dues, and subsidy tracking"
+    },
+    "/settings/{settingId}": {
+      "schema": "firebaseblueprint.entities.companyBranding",
+      "description": "Bharat Solar Shakti company setup and registration details"
+    }
+  }
+}

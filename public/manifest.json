@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "name": "BSSPL Management Tool",
+  "short_name": "BSSPL Tool",
+  "description": "Bharat Solar Shakti Pvt - Solar EPC 16-Stage Workflow, PM Surya Ghar Subsidies, and Financial Management Tool.",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#020617",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
